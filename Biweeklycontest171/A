@@ -1,0 +1,50 @@
+class Solution {
+public:
+    bool completePrime(int num) {
+        vector<int> v;
+        int n= num;
+       
+        
+        while(n){
+            v.push_back(n%10);
+            n=n/10;
+        }
+        vector<int> p;
+        p.push_back(v[v.size()-1]);
+        int s = v.size();
+        
+        for(int i=1;i<s;i++){
+            p.push_back(p[p.size()-1]*10+v[v.size()-1-i]);
+        }
+        vector<long long> su;
+        su.push_back(10);
+        for(int i=1;i<s;i++){
+            su.push_back(su[su.size()-1]*10);
+        }
+        for(int i=0;i<su.size();i++){
+            int ac = num%su[i];
+            su[i]=ac;
+        }
+        for(int i=0;i<p.size();i++){
+            for(int j=2;j<p[i];j++){
+                if(p[i]%j==0){
+                    return false;
+                }
+            }
+            if(p[i]==1){
+                return false;
+            }
+        }
+                for(int i=0;i<su.size();i++){
+            for(int j=2;j<su[i];j++){
+                if(su[i]%j==0){
+                    return false;
+                }
+            }
+                     if(su[i]==1){
+                return false;
+            }
+        }
+        return true;
+    }
+};
