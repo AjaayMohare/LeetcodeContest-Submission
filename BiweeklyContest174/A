@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> bestTower(vector<vector<int>>& towers, vector<int>& center, int radius) {
+        int mx =INT_MIN;
+        int x = center[0];
+        int y=center[1];
+        map<int,vector<pair<int,int>>> m;
+        for(int i=0;i<towers.size();i++){
+            int di = abs(towers[i][0]-x) + abs(towers[i][1]-y);
+            if(di<=radius){
+                mx=max(mx,towers[i][2]);
+                m[towers[i][2]].push_back({towers[i][0],towers[i][1]});
+            }
+        }
+        if(m.size()==0){
+            return {-1,-1};
+        }
+        sort(m[mx].begin(),m[mx].end());
+        return {m[mx][0].first,m[mx][0].second};
+    }
+};
