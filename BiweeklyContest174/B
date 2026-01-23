@@ -1,0 +1,10 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums, vector<int>& target) {
+        map<int,int> m;
+        for(int i=0;i<target.size();i++){
+            if(nums[i]!=target[i]) m[nums[i]]++;
+        }
+        return m.size();
+    }
+};
