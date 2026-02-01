@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string reverseByType(string s) {
+        string n ="";
+        vector<char> v1,v2;
+        for(int i=0;i<s.size();i++){
+            if(s[i]>='a' && s[i]<='z') v1.push_back(s[i]);
+            else v2.push_back(s[i]);
+        }
+        for(int i=0;i<s.size();i++){
+            if(s[i]>='a' && s[i]<='z') {
+                s[i]=v1.back();
+                v1.pop_back();
+            }
+            else{
+                s[i]=v2.back();
+                v2.pop_back();
+            }
+        }        
+        return s;
+    }
+};
