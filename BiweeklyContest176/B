@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int prefixConnected(vector<string>& words, int k) {
+        map<string,int> m;
+        for(int i=0;i<words.size();i++){
+            string w = words[i];
+            if(w.size()<k) continue;
+            string q = w.substr(0,k);
+            m[q]++;
+        }
+        int cnt = 0;
+        for(auto i:m){
+            if(i.second>1) cnt++;
+        }
+        return cnt;
+    }
+};
